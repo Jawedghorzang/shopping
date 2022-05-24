@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+ <html xmlns:th="https://www.thymeleaf.org"
+ 	   xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+  <head>
+   <title> Shopping </title>
+  </head>
+  
+  <body>
+  
+  <h1> Shopping Now</h1>
+    
+      <span th:text="${dmessage}"> message </span>
+      <span th:text="${emessage}"> message </span>
+    <div align="center">
+    <div sec:authorize="isAuthenticated()">
+    Welcome <b><span sec:authentication="name">Username</span></b>
+    &nbsp;
+    <span sec:authentication="principal.authorities">Roles</span>
+    
+     <form th:action="@{/logout}" method="post">
+     <input type="submit" value="logout" />
+     </form>
+    </div>
+     <a th:href="@{/delete}" sec:authorize="hasAnyAuthority('ADMIN')"> delete the documents </a> <br>
+     <a th:href="@{/edit}" sec:authorize="hasAnyAuthority('ADMIN','EDITOR')"> edit the documents </a>
+    </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </body>
+ </html>
